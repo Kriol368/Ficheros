@@ -10,14 +10,16 @@ public class Ejercicio1 {
         int opcion;
         do {
             int contador = 0;
-            mostrarMenu(actual, contador);
+            contador = mostrarMenu(actual, contador);
             opcion = getOption();
-            if (opcion == -1) {
+            if (opcion > contador) {
+                System.out.println("Introduzca una opcion correcta");
+            } else if (opcion == -1) {
                 break;
             } else if (opcion == 0) {
-                if (actual.getName().isBlank()){
+                if (actual.getName().isBlank()) {
                     System.out.println("Ya estas en la raiz");
-                }else {
+                } else {
                     actual = actual.getParentFile();
                 }
             } else {
@@ -31,7 +33,7 @@ public class Ejercicio1 {
         } while (true);
     }
 
-    private static void mostrarMenu(File actual, int contador) {
+    private static int mostrarMenu(File actual, int contador) {
         System.out.println("Lista de ficheros y directorios del directorio: " + actual);
         System.out.println("------------------------------------------------------------------");
         System.out.println(contador + ".- Directorio padre");
@@ -44,6 +46,7 @@ public class Ejercicio1 {
             }
         }
         System.out.println("Introduce una opcion (-1 para salir):");
+        return contador;
     }
 
     public static int getOption() {
