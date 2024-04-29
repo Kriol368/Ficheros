@@ -10,12 +10,14 @@ public class Ejercicio1 {
             int contador = 0;
             mostrarMenu(actual, contador);
             opcion = getOption();
-            if (opcion == -1) {
+            if (opcion > contador) {
+                System.out.println("Introduzca una opcion valida");
+            } else if (opcion == -1) {
                 break;
             } else if (opcion == 0) {
-                if (actual.getName().isBlank()){
+                if (actual.getName().isBlank()) {
                     System.out.println("Ya estas en la raiz");
-                }else {
+                } else {
                     actual = actual.getParentFile();
                 }
             } else {
