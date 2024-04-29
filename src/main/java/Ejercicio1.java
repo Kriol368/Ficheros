@@ -13,7 +13,11 @@ public class Ejercicio1 {
             if (opcion == -1) {
                 break;
             } else if (opcion == 0) {
-                actual = actual.getParentFile();
+                if (actual.getName().isBlank()){
+                    System.out.println("Ya estas en la raiz");
+                }else {
+                    actual = actual.getParentFile();
+                }
             } else {
                 File seleccionado = Objects.requireNonNull(actual.listFiles())[opcion - 1];
                 if (seleccionado.isFile()) {
