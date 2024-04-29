@@ -1,10 +1,11 @@
-package gestion;
+package gestionSistemaFicheros;
 
 import java.io.*;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Ejercicio1 {
+public class Ejercicio2 {
     public static void main(String[] args) {
         File actual = File.listRoots()[0];
         int opcion;
@@ -40,9 +41,9 @@ public class Ejercicio1 {
         for (File e : Objects.requireNonNull(actual.listFiles())) {
             contador++;
             if (e.isDirectory()) {
-                System.out.println(contador + ".- " + e.getName() + " <Directorio>");
+                System.out.println(contador + ".- " + "\t" + getPermissions(e) + "\t" + e.length() + "\t" + new Date(e.lastModified()) + "\t" + e.getName());
             } else {
-                System.out.println(contador + ".- " + e.getName() + " " + e.length());
+                System.out.println(contador + ".- " + "\t" + getPermissions(e) + "\t" + e.length() + "\t" + new Date(e.lastModified()) + "\t" + e.getName());
             }
         }
         System.out.println("Introduce una opcion (-1 para salir):");
@@ -52,5 +53,30 @@ public class Ejercicio1 {
     public static int getOption() {
         Scanner sc = new Scanner(System.in);
         return Integer.parseInt(sc.nextLine());
+    }
+
+    public static String getPermissions(File e) {
+        String permissions = "";
+        if (e.isDirectory()) {
+            permissions += "d";
+        } else {
+            permissions += "-";
+        }
+        if (e.canRead()) {
+            permissions += "r";
+        } else {
+            permissions += "-";
+        }
+        if (e.canWrite()) {
+            permissions += "w";
+        } else {
+            permissions += "-";
+        }
+        if (e.canExecute()) {
+            permissions += "x";
+        } else {
+            permissions += "-";
+        }
+        return permissions;
     }
 }
