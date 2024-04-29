@@ -1,3 +1,5 @@
+package ejemplos;
+
 import java.io.*;
 public class Ejemplo1 {
     public static void main(String[] args) {
